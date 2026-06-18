@@ -1,0 +1,7 @@
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --muted: #dce920;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', Helvetica, sans-serif;
+}

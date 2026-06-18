@@ -1,0 +1,103 @@
+---
+interface Props {
+  description?: string;
+  ctaLabel?: string;
+}
+
+const {
+  description = 'Software de reservas diseñado para barberías modernas. Gestiona citas, fideliza clientes y haz crecer tu negocio — sin complicaciones.',
+  ctaLabel = 'Empieza gratis',
+} = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <h1 id="hero-heading" class="hero-headline animate-fade-rise">
+    Tu barbería,{' '}
+    <span class="accent">sin</span>
+    <br />
+    <span class="accent">limites.</span>
+  </h1>
+
+  <p class="hero-description animate-fade-rise-delay">
+    {description}
+  </p>
+
+  <button type="button" class="btn-hero animate-fade-rise-delay-2">
+    {ctaLabel}
+  </button>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: calc(100vh - 88px);
+    padding: calc(8rem - 75px) 24px 80px;
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 400;
+    color: #fff;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+    max-width: 1100px;
+  }
+
+  @media (min-width: 640px) {
+    .hero-headline {
+      font-size: clamp(3.5rem, 9vw, 6rem);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-headline {
+      font-size: clamp(4rem, 9.5vw, 7rem);
+    }
+  }
+
+  .hero-headline .accent {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .hero-description {
+    font-size: clamp(0.9rem, 2vw, 1.125rem);
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 580px;
+    margin-top: 32px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .btn-hero {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000;
+    background: var(--muted);
+    border: none;
+    border-radius: 9999px;
+    padding: 20px 56px;
+    margin-top: 48px;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .btn-hero:hover {
+    transform: scale(1.03);
+    opacity: 0.88;
+  }
+
+  .btn-hero:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
+</style>

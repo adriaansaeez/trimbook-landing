@@ -1,0 +1,112 @@
+---
+const sidebarItems = ['Inicio', 'Citas', 'Clientes', 'Servicios', 'Pagos'];
+const appointments = [
+  { time: '09:00', name: 'Carlos M.', service: 'Corte + Barba', dur: '45min' },
+  { time: '10:00', name: 'Javier R.', service: 'Degradado', dur: '30min' },
+  { time: '11:15', name: 'Luis T.', service: 'Afeitado clásico', dur: '40min' },
+];
+const stats = [
+  { label: 'Reservas hoy', val: '8' },
+  { label: 'Ingresos', val: '€240' },
+  { label: 'Clientes nuevos', val: '3' },
+];
+---
+
+<section class="bento-section reveal">
+  <div class="bento-grid reveal-stagger">
+    <div class="bento-card bento-main">
+      <div class="bento-app-placeholder">
+        <div class="bento-app-bar">
+          <span class="bento-app-dot" style="background:#ff5f57"></span>
+          <span class="bento-app-dot" style="background:#febc2e"></span>
+          <span class="bento-app-dot" style="background:#28c840"></span>
+          <span style="flex:1;text-align:center;font-size:11px;color:#999;letter-spacing:0.05em">trimbook.app</span>
+        </div>
+        <div class="bento-app-body">
+          <div class="bento-sidebar">
+            <div class="bento-sidebar-logo">Trimbook<sup style="font-size:0.55em">®</sup></div>
+            {sidebarItems.map((item) => (
+              <div class={`bento-sidebar-item${item === 'Citas' ? ' active' : ''}`}>{item}</div>
+            ))}
+          </div>
+          <div class="bento-content">
+            <div class="bento-content-header">
+              <span class="bento-content-title">Citas de hoy</span>
+              <div class="bento-content-badge">+12 esta semana</div>
+            </div>
+            <div class="bento-cards-row">
+              {appointments.map((a) => (
+                <div class="bento-appt">
+                  <div class="bento-appt-time">{a.time}</div>
+                  <div class="bento-appt-name">{a.name}</div>
+                  <div class="bento-appt-service">{a.service}</div>
+                  <div class="bento-appt-dur">{a.dur}</div>
+                </div>
+              ))}
+            </div>
+            <div class="bento-stats-row">
+              {stats.map((s) => (
+                <div class="bento-stat">
+                  <div class="bento-stat-val">{s.val}</div>
+                  <div class="bento-stat-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bento-card-label">
+        <span class="bento-tag">Plataforma</span>
+        <p class="bento-card-title">Todo tu negocio,<br />en una pantalla.</p>
+      </div>
+    </div>
+
+    <div class="bento-card bento-sm bento-accent">
+      <div class="bento-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="4" y="4" width="24" height="24" rx="6" stroke="currentColor" stroke-width="1.5"></rect>
+          <path d="M11 16l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <p class="bento-card-title">Reserva<br />en un click.</p>
+      <p class="bento-card-desc">Tus clientes reservan en segundos, sin llamadas ni mensajes.</p>
+    </div>
+
+    <div class="bento-card bento-sm bento-dark">
+      <div class="bento-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5"></circle>
+          <path d="M16 10v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <p class="bento-card-title">Gestión<br />sin esfuerzo.</p>
+      <p class="bento-card-desc">Agenda, servicios y clientes desde un panel claro y rápido.</p>
+    </div>
+
+    <div class="bento-card bento-sm bento-dark">
+      <div class="bento-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 4l2.5 7.5H26l-6.5 4.7 2.5 7.5L16 19l-6 4.7 2.5-7.5L6 11.5h7.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <p class="bento-card-title">Al alcance<br />de cualquiera.</p>
+      <p class="bento-card-desc">Precio justo para barberías independientes. Sin sorpresas.</p>
+    </div>
+
+    <div class="bento-card bento-wide bento-dark">
+      <div class="bento-ia-visual">
+        <div class="bento-ia-bubble bento-ia-in">Hola, quiero reservar para mañana a las 11 🪒</div>
+        <div class="bento-ia-bubble bento-ia-out">¡Perfecto! Te he reservado con Carlos mañana a las 11:00. ✅</div>
+      </div>
+      <div class="bento-card-label">
+        <span class="bento-tag">Próximamente</span>
+        <p class="bento-card-title">Reserva desde<br />donde quieras.</p>
+        <p class="bento-card-desc">Agente de IA integrado en WhatsApp, Instagram y más. Tus clientes reservan sin abrir ninguna app.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  @import '../../styles/sections/bento.css';
+</style>

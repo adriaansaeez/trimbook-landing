@@ -1,0 +1,68 @@
+---
+import BookingFormMockup from './gallery/BookingFormMockup.astro';
+import CalendarMockup from './gallery/CalendarMockup.astro';
+import StatsMockup from './gallery/StatsMockup.astro';
+import AIMockup from './gallery/AIMockup.astro';
+
+const tabs = [
+  { label: 'Reservas', subtitle: 'Formulario de reserva', desc: 'Tus clientes reservan en segundos desde cualquier dispositivo.' },
+  { label: 'Calendario', subtitle: 'Calendario dinámico', desc: 'Vista completa de tu agenda en tiempo real. Arrastra, edita y gestiona.' },
+  { label: 'Estadísticas', subtitle: 'Panel de métricas', desc: 'Ingresos, clientes y tendencias. Todo lo que necesitas para crecer.' },
+  { label: 'Agente IA', subtitle: 'Reservas por WhatsApp', desc: 'Tu asistente IA recibe y confirma citas 24/7 sin que muevas un dedo.' },
+];
+---
+
+<section id="funciones" class="gallery-section reveal" data-gallery-root>
+  <div class="gallery-inner">
+    <div class="gallery-tabs" role="tablist" aria-label="Funcionalidades">
+      <p class="gallery-eyebrow">Funcionalidades</p>
+      {tabs.map((t, i) => (
+        <button
+          type="button"
+          class={`gallery-tab${i === 0 ? ' gallery-tab--active' : ''}`}
+          role="tab"
+          data-gallery-tab={i}
+          data-subtitle={t.subtitle}
+          data-desc={t.desc}
+          aria-selected={i === 0 ? 'true' : 'false'}
+        >
+          <div class="gallery-tab-num">{String(i + 1).padStart(2, '0')}</div>
+          <div>
+            <div class="gallery-tab-label">{t.label}</div>
+            <div class="gallery-tab-sub">{t.subtitle}</div>
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <div class="gallery-preview">
+      <div class="gallery-mockup gallery-mockup--in" data-gallery-panel="0" role="tabpanel">
+        <BookingFormMockup />
+      </div>
+      <div class="gallery-mockup" data-gallery-panel="1" role="tabpanel" hidden>
+        <CalendarMockup />
+      </div>
+      <div class="gallery-mockup" data-gallery-panel="2" role="tabpanel" hidden>
+        <StatsMockup />
+      </div>
+      <div class="gallery-mockup" data-gallery-panel="3" role="tabpanel" hidden>
+        <AIMockup />
+      </div>
+      <div class="gallery-desc-bar">
+        <span class="gallery-desc-label" data-gallery-desc-label>{tabs[0].subtitle}</span>
+        <span class="gallery-desc-text" data-gallery-desc-text>{tabs[0].desc}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initGalleryTabs } from '../../scripts/gallery-tabs';
+
+  const roots = document.querySelectorAll<HTMLElement>('[data-gallery-root]');
+  roots.forEach((root) => initGalleryTabs(root));
+</script>
+
+<style is:global>
+  @import '../../styles/sections/gallery.css';
+</style>

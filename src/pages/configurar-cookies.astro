@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Configurar Cookies — Trimbook" description="Configura tus preferencias de cookies en Trimbook. Acepta, rechaza o personaliza el uso de cookies.">
+  <main class="legal-page">
+    <article class="legal-container">
+      <nav class="legal-breadcrumb">
+        <a href="/">Inicio</a>
+        <span>/</span>
+        <span>Configurar Cookies</span>
+      </nav>
+
+      <h1 class="legal-title">Configurar Cookies</h1>
+
+      <p class="legal-intro">Puedes personalizar tus preferencias de cookies en cualquier momento. Las cookies técnicas o necesarias son imprescindibles para el funcionamiento del sitio web y no pueden desactivarse. El resto de categorías puedes aceptarlas o rechazarlas libremente.</p>
+
+      <form id="cookie-form" class="cookie-config-form">
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div>
+              <h2>Cookies técnicas (necesarias)</h2>
+              <p class="cookie-category-desc">Necesarias para el funcionamiento básico del sitio web. No pueden desactivarse.</p>
+            </div>
+            <span class="cookie-badge cookie-badge-always">Siempre activas</span>
+          </div>
+        </div>
+
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div>
+              <h2>Cookies de preferencias</h2>
+              <p class="cookie-category-desc">Permiten recordar tus preferencias (idioma, región) para ofrecerte una experiencia personalizada.</p>
+            </div>
+            <label class="cookie-toggle">
+              <input type="checkbox" id="cookies-preferences" checked />
+              <span class="cookie-toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div>
+              <h2>Cookies analíticas</h2>
+              <p class="cookie-category-desc">Nos ayudan a entender cómo interactúas con el sitio web para mejorar su rendimiento y contenido.</p>
+            </div>
+            <label class="cookie-toggle">
+              <input type="checkbox" id="cookies-analytics" checked />
+              <span class="cookie-toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div>
+              <h2>Cookies de marketing</h2>
+              <p class="cookie-category-desc">Se utilizan para mostrarte anuncios relevantes y medir la efectividad de nuestras campañas.</p>
+            </div>
+            <label class="cookie-toggle">
+              <input type="checkbox" id="cookies-marketing" />
+              <span class="cookie-toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="cookie-config-actions">
+          <button type="button" class="cookie-btn cookie-btn-secondary" id="cookie-reject-all">Rechazar todas</button>
+          <button type="submit" class="cookie-btn cookie-btn-primary">Guardar preferencias</button>
+          <button type="button" class="cookie-btn cookie-btn-accent" id="cookie-accept-all">Aceptar todas</button>
+        </div>
+      </form>
+
+      <div id="cookie-saved-message" class="cookie-saved-message" hidden>
+        <p>✓ Preferencias guardadas correctamente.</p>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax';
+  }
+
+  function loadPreferences() {
+    const saved = getCookie('cookie_consent');
+    if (saved) {
+      try {
+        const prefs = JSON.parse(saved);
+        document.getElementById('cookies-preferences').checked = prefs.preferences ?? true;
+        document.getElementById('cookies-analytics').checked = prefs.analytics ?? true;
+        document.getElementById('cookies-marketing').checked = prefs.marketing ?? false;
+      } catch {
+        // use defaults
+      }
+    }
+  }
+
+  function savePreferences() {
+    const prefs = {
+      necessary: true,
+      preferences: document.getElementById('cookies-preferences').checked,
+      analytics: document.getElementById('cookies-analytics').checked,
+      marketing: document.getElementById('cookies-marketing').checked,
+    };
+    setCookie('cookie_consent', JSON.stringify(prefs), 365);
+
+    const msg = document.getElementById('cookie-saved-message');
+    msg.hidden = false;
+    setTimeout(() => { msg.hidden = true; }, 3000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadPreferences();
+
+    document.getElementById('cookie-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      savePreferences();
+    });
+
+    document.getElementById('cookie-accept-all').addEventListener('click', () => {
+      document.getElementById('cookies-preferences').checked = true;
+      document.getElementById('cookies-analytics').checked = true;
+      document.getElementById('cookies-marketing').checked = true;
+      savePreferences();
+    });
+
+    document.getElementById('cookie-reject-all').addEventListener('click', () => {
+      document.getElementById('cookies-preferences').checked = false;
+      document.getElementById('cookies-analytics').checked = false;
+      document.getElementById('cookies-marketing').checked = false;
+      savePreferences();
+    });
+  });
+</script>
+
+<style is:global>
+  @import '../styles/pages/legal.css';
+</style>

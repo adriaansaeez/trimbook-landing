@@ -1,0 +1,46 @@
+<div class="mock-wrap">
+  <div class="mock-header">
+    <div class="mock-dots">
+      <span style="background:#ff5f57"></span>
+      <span style="background:#febc2e"></span>
+      <span style="background:#28c840"></span>
+    </div>
+    <span class="mock-url">trimbook.app/reservar</span>
+  </div>
+  <div class="mock-body" style="padding:28px 32px;display:flex;flex-direction:column;gap:18px">
+    <p style="font-family:var(--font-display);font-size:1.4rem;color:#fff;letter-spacing:-0.03em;margin-bottom:4px">Reserva tu cita</p>
+    <div class="mock-field-row">
+      <div class="mock-field">
+        <div class="mock-field-label">Nombre</div>
+        <div class="mock-field-input">Carlos Martínez</div>
+      </div>
+      <div class="mock-field">
+        <div class="mock-field-label">Teléfono</div>
+        <div class="mock-field-input">+34 612 345 678</div>
+      </div>
+    </div>
+    <div class="mock-field">
+      <div class="mock-field-label">Servicio</div>
+      <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
+        {['Corte', 'Barba', 'Degradado', 'Afeitado'].map((s, i) => (
+          <div class={`mock-chip${i === 0 ? ' mock-chip--active' : ''}`}>{s}</div>
+        ))}
+      </div>
+    </div>
+    <div class="mock-field-row">
+      <div class="mock-field">
+        <div class="mock-field-label">Fecha</div>
+        <div class="mock-field-input">Lunes 22 Abr</div>
+      </div>
+      <div class="mock-field">
+        <div class="mock-field-label">Hora</div>
+        <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+          {['10:00', '11:00', '12:00'].map((h, i) => (
+            <div class={`mock-time${i === 1 ? ' mock-time--active' : ''}`}>{h}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+    <button type="button" class="mock-btn">Confirmar reserva →</button>
+  </div>
+</div>

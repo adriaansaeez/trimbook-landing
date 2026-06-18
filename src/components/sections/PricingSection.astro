@@ -1,0 +1,134 @@
+---
+const checkIcon = `<svg class="pricing-tier-feature-check" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l2.8 2.8L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const xIcon = `<svg class="pricing-tier-feature-check" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 5l6 6M11 5l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+const arrowIcon = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+const barbershopFeatures = [
+  '<strong>Hasta 4 barberos</strong> con agenda independiente',
+  'Panel de administrador con roles y permisos',
+  'Comisiones y liquidación por barbero',
+  'Estadísticas por barbero y por local',
+  'Asignación inteligente de citas',
+  'Soporte prioritario y onboarding 1:1',
+  '+5€/mes por cada barbero adicional',
+];
+---
+
+<section id="precios" class="pricing-section reveal">
+  <div class="pricing-header">
+    <p class="pricing-section-eyebrow">Precios</p>
+    <h2 class="pricing-section-title">
+      Elige tu plan, <span class="pricing-section-title-accent">crece a tu ritmo.</span>
+    </h2>
+    <p class="pricing-section-sub">
+      Empieza con lo que necesitas hoy. Cambia de plan cuando quieras, sin penalizaciones.
+    </p>
+  </div>
+
+  <div class="pricing-tiers reveal-stagger">
+    <!-- Barber -->
+    <div class="pricing-tier pricing-tier--dimmed">
+      <div class="pricing-tier-head">
+        <div class="pricing-tier-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="pricing-tier-name">Barber</p>
+          <p class="pricing-tier-tagline">Para barberos autónomos que gestionan su propia agenda.</p>
+        </div>
+      </div>
+      <div class="pricing-tier-price-row">
+        <span class="pricing-tier-currency">€</span>
+        <span class="pricing-tier-amount">15</span>
+        <span class="pricing-tier-period">/mes</span>
+      </div>
+      <p class="pricing-tier-billing">IVA no incluido · Facturación mensual</p>
+      <div class="pricing-tier-divider"></div>
+      <p class="pricing-tier-includes">Incluye</p>
+      <div class="pricing-tier-features">
+        <div class="pricing-tier-feature" set:html={`${checkIcon}<span><strong>1 usuario</strong> — tú gestionas y atiendes</span>`}></div>
+        <div class="pricing-tier-feature" set:html={`${checkIcon}<span>Reservas online ilimitadas</span>`}></div>
+        <div class="pricing-tier-feature" set:html={`${checkIcon}<span>Calendario en tiempo real</span>`}></div>
+        <div class="pricing-tier-feature" set:html={`${checkIcon}<span>Recordatorios automáticos por WhatsApp</span>`}></div>
+        <div class="pricing-tier-feature" set:html={`${checkIcon}<span>Pagos y señales integrados</span>`}></div>
+        <div class="pricing-tier-feature" set:html={`${checkIcon}<span>Panel de estadísticas e ingresos</span>`}></div>
+        <div class="pricing-tier-feature pricing-tier-feature-muted" set:html={`${xIcon}<span>Gestión multi-barbero</span>`}></div>
+      </div>
+      <button type="button" class="pricing-tier-cta" disabled aria-disabled="true" set:html={`Empieza con Barber ${arrowIcon}`}></button>
+    </div>
+
+    <!-- Founder (centro) -->
+    <div class="pricing-tier pricing-tier--founder">
+      <div class="pricing-tier-badge">Solo 5 plazas</div>
+      <div class="pricing-tier-head">
+        <div class="pricing-tier-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="pricing-tier-name">Founder</p>
+          <p class="pricing-tier-tagline">Barbershop completo al precio de Barber. Oferta por tiempo limitado para los primeros clientes.</p>
+        </div>
+      </div>
+      <div class="pricing-tier-price-row">
+        <span class="pricing-tier-currency">€</span>
+        <span class="pricing-tier-amount">15</span>
+        <span class="pricing-tier-period">/mes</span>
+      </div>
+      <p class="pricing-tier-billing pricing-tier-billing--highlight">
+        Todo lo de Barbershop (€30) · Solo 5 plazas · Tiempo limitado
+      </p>
+      <div class="pricing-tier-divider"></div>
+      <p class="pricing-tier-includes">Todo lo de Barbershop, incluido:</p>
+      <div class="pricing-tier-features">
+        {barbershopFeatures.map((feature) => (
+          <div class="pricing-tier-feature" set:html={`${checkIcon}<span>${feature}</span>`}></div>
+        ))}
+      </div>
+      <button type="button" class="pricing-tier-cta" set:html={`Reservar plaza Founder ${arrowIcon}`}></button>
+    </div>
+
+    <!-- Barbershop -->
+    <div class="pricing-tier pricing-tier--dimmed">
+      <div class="pricing-tier-head">
+        <div class="pricing-tier-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 21V10l9-7 9 7v11"></path>
+            <path d="M9 21v-7h6v7"></path>
+            <circle cx="12" cy="9" r="1.4" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <div>
+          <p class="pricing-tier-name">Barbershop</p>
+          <p class="pricing-tier-tagline">Para equipos. Gestiona tu local y a tus barberos desde un solo panel.</p>
+        </div>
+      </div>
+      <div class="pricing-tier-price-row">
+        <span class="pricing-tier-currency">€</span>
+        <span class="pricing-tier-amount">30</span>
+        <span class="pricing-tier-period">/mes</span>
+      </div>
+      <p class="pricing-tier-billing">Hasta 4 barberos incluidos · IVA no incluido</p>
+      <div class="pricing-tier-divider"></div>
+      <p class="pricing-tier-includes">Todo lo de Barber, más:</p>
+      <div class="pricing-tier-features">
+        {barbershopFeatures.map((feature) => (
+          <div class="pricing-tier-feature" set:html={`${checkIcon}<span>${feature}</span>`}></div>
+        ))}
+      </div>
+      <button type="button" class="pricing-tier-cta" disabled aria-disabled="true" set:html={`Empieza con Barbershop ${arrowIcon}`}></button>
+    </div>
+  </div>
+
+  <p class="pricing-footnote">
+    14 días gratis en todos los planes · Sin tarjeta de crédito · Founder: plazas limitadas · ¿Más de 8 barberos? <a href="#contacto">Habla con nosotros</a>
+  </p>
+</section>
+
+<style is:global>
+  @import '../../styles/sections/pricing.css';
+</style>

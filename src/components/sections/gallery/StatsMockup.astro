@@ -1,0 +1,41 @@
+---
+const bars = [65, 80, 45, 90, 70, 55, 85, 60, 75, 88, 50, 95];
+const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+const kpis = [
+  { v: '€4.280', l: 'Ingresos este mes' },
+  { v: '127', l: 'Citas completadas' },
+  { v: '92%', l: 'Tasa de asistencia' },
+];
+---
+
+<div class="mock-wrap">
+  <div class="mock-header">
+    <div class="mock-dots">
+      <span style="background:#ff5f57"></span>
+      <span style="background:#febc2e"></span>
+      <span style="background:#28c840"></span>
+    </div>
+    <span class="mock-url">Dashboard — Estadísticas</span>
+  </div>
+  <div class="mock-body" style="padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      {kpis.map((s) => (
+        <div style="background:rgba(255,255,255,0.05);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.07)">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:#fff;letter-spacing:-0.04em">{s.v}</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:4px">{s.l}</div>
+        </div>
+      ))}
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,0.06)">
+      <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:12px">Reservas por mes</div>
+      <div style="display:flex;align-items:flex-end;gap:6px;height:80px">
+        {bars.map((h, i) => (
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style={`width:100%;height:${h}%;background:${i === 11 ? 'var(--muted)' : 'rgba(220,233,32,0.3)'};border-radius:3px 3px 0 0`}></div>
+            <div style="font-size:8px;color:rgba(255,255,255,0.25)">{months[i]}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

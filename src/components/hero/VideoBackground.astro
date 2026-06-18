@@ -1,0 +1,52 @@
+---
+interface Props {
+  src?: string;
+}
+
+const { src = '/videos/hero.mp4' } = Astro.props;
+---
+
+<div class="video-wrap">
+  <video
+    class="hero-video"
+    data-ping-pong-video
+    src={src}
+    muted
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  />
+</div>
+
+<script>
+  import { initPingPongVideo } from '../../scripts/ping-pong-video';
+
+  const videos = document.querySelectorAll<HTMLVideoElement>('[data-ping-pong-video]');
+  const cleanups: Array<(() => void) | undefined> = [];
+
+  videos.forEach((vid) => {
+    cleanups.push(initPingPongVideo(vid));
+  });
+
+  document.addEventListener('astro:before-swap', () => {
+    cleanups.forEach((cleanup) => cleanup?.());
+  });
+</script>
+
+<style>
+  .video-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>

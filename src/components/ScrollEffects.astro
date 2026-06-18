@@ -1,0 +1,13 @@
+<div id="scroll-overlay" aria-hidden="true"></div>
+
+<script>
+  import { initScrollOverlay } from '../scripts/scroll-overlay';
+  import { initStickyNav } from '../scripts/sticky-nav';
+  import { initReveal } from '../scripts/reveal';
+
+  const cleanups = [initScrollOverlay(), initStickyNav(), initReveal()];
+
+  document.addEventListener('astro:before-swap', () => {
+    cleanups.forEach((cleanup) => cleanup?.());
+  });
+</script>

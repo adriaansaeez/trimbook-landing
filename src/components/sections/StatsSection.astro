@@ -1,0 +1,66 @@
+---
+const trustNames = [
+  'Barber & Co.', 'The Cut Room', 'Navaja Fina', 'El Maestro', 'Sharp & Sons',
+  'Blade Studio', 'Corte Clásico', 'Urban Cuts', 'La Barbería', 'Fade Factory',
+];
+const trustTrack = [...trustNames, ...trustNames];
+
+const stats = [
+  {
+    arrow: '↑',
+    value: '3h',
+    label: 'Menos trabajo administrativo',
+    desc: 'Olvídate de gestionar citas por WhatsApp. Tu agenda se organiza sola, en tiempo real.',
+  },
+  {
+    arrow: '↑',
+    value: '40%',
+    label: 'Más cobros puntuales',
+    desc: 'Pagos y señales integrados en el proceso de reserva. Controla tus ingresos sin perseguir a nadie.',
+  },
+  {
+    arrow: '↓',
+    value: '60%',
+    label: 'Menos clientes que no aparecen',
+    desc: 'Recordatorios automáticos por WhatsApp e email. Tus horas valen demasiado para desperdiciarlas.',
+  },
+];
+---
+
+<section class="stats-section reveal">
+  <div class="stats-grid-bg" aria-hidden="true"></div>
+  <div class="stats-inner">
+    <p class="stats-eyebrow">Por qué funciona</p>
+    <h2 class="stats-headline">
+      Las barberías que usan Trimbook<br class="stats-br" /> gestionan más, trabajan menos.
+    </h2>
+    <div class="stats-row reveal-stagger">
+      {stats.map((s) => (
+        <div class="stats-item">
+          <div class="stats-number">
+            <span class="stats-arrow">{s.arrow}</span>{s.value}
+          </div>
+          <div class="stats-label">{s.label}</div>
+          <div class="stats-desc">{s.desc}</div>
+        </div>
+      ))}
+    </div>
+    <div class="trust-carousel-wrap">
+      <p class="trust-label">Barberías que ya confían en Trimbook</p>
+      <div class="trust-track-outer">
+        <div class="trust-track">
+          {trustTrack.map((name, i) => (
+            <div class="trust-item">
+              <div class="trust-logo-placeholder"></div>
+              <span class="trust-name">{name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  @import '../../styles/sections/stats.css';
+</style>

@@ -1,0 +1,36 @@
+---
+const msgs = [
+  { from: 'client', text: 'Hola, quiero reservar para mañana a las 11 🪒' },
+  { from: 'ai', text: '¡Hola! Claro, tengo disponibilidad mañana martes a las 11:00 con Carlos. ¿Te va bien?' },
+  { from: 'client', text: 'Perfecto sí' },
+  { from: 'ai', text: '✅ Reserva confirmada para mañana 22 Abr a las 11:00. Te enviaré un recordatorio una hora antes. ¡Hasta pronto!' },
+];
+---
+
+<div class="mock-wrap">
+  <div class="mock-header">
+    <div class="mock-dots">
+      <span style="background:#ff5f57"></span>
+      <span style="background:#febc2e"></span>
+      <span style="background:#28c840"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:20px;height:20px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path></svg>
+      </div>
+      <span class="mock-url">WhatsApp · Trimbook IA</span>
+    </div>
+  </div>
+  <div class="mock-body" style="padding:16px;display:flex;flex-direction:column;gap:10px;background:rgba(10,20,10,0.6)">
+    {msgs.map((m) => (
+      <div style={`display:flex;justify-content:${m.from === 'client' ? 'flex-end' : 'flex-start'}`}>
+        <div
+          style={`max-width:72%;padding:10px 14px;border-radius:14px;border-bottom-right-radius:${m.from === 'client' ? '3px' : '14px'};border-bottom-left-radius:${m.from === 'ai' ? '3px' : '14px'};background:${m.from === 'client' ? '#25D366' : 'rgba(255,255,255,0.1)'};color:${m.from === 'client' ? '#000' : 'rgba(255,255,255,0.9)'};font-size:12px;line-height:1.5;font-weight:${m.from === 'client' ? '500' : '400'}`}
+        >
+          {m.text}
+        </div>
+      </div>
+    ))}
+    <div style="font-size:10px;color:rgba(255,255,255,0.2);text-align:center;margin-top:4px">Respuesta generada por IA · 0.8s</div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+---
+const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+const hours = ['09:00', '10:00', '11:00', '12:00', '13:00'];
+const appts: Record<string, string> = {
+  '0-0': 'Corte + Barba',
+  '1-1': 'Degradado',
+  '2-2': 'Afeitado',
+  '3-0': 'Barba',
+  '4-3': 'Corte',
+  '5-1': 'VIP',
+};
+---
+
+<div class="mock-wrap">
+  <div class="mock-header">
+    <div class="mock-dots">
+      <span style="background:#ff5f57"></span>
+      <span style="background:#febc2e"></span>
+      <span style="background:#28c840"></span>
+    </div>
+    <span class="mock-url">Semana del 21 — 26 Abril</span>
+  </div>
+  <div class="mock-body" style="padding:16px;overflow-x:auto">
+    <div style="display:grid;grid-template-columns:48px repeat(6,1fr);gap:4px;min-width:500px">
+      <div></div>
+      {days.map((d) => (
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);text-align:center;padding:4px 0">{d}</div>
+      ))}
+      {hours.map((h, hi) => (
+        <div style="display:contents">
+          <div style="font-size:10px;color:rgba(255,255,255,0.3);padding-top:8px">{h}</div>
+          {days.map((_, di) => {
+            const key = `${di}-${hi}`;
+            const appt = appts[key];
+            return (
+              <div
+                style={`background:${appt ? 'rgba(220,233,32,0.15)' : 'rgba(255,255,255,0.03)'};border:${appt ? '1px solid rgba(220,233,32,0.3)' : '1px solid rgba(255,255,255,0.05)'};border-radius:6px;padding:6px 8px;min-height:40px;font-size:10px;color:${appt ? 'var(--muted)' : 'transparent'}`}
+              >
+                {appt || '·'}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

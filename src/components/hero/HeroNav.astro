@@ -1,0 +1,157 @@
+---
+interface Props {
+  variant?: 'transparent' | 'sticky';
+}
+
+const { variant = 'transparent' } = Astro.props;
+const isSticky = variant === 'sticky';
+const navClass = isSticky ? 'nav nav--sticky' : 'nav nav--transparent';
+---
+
+<nav class={navClass} data-sticky-nav={isSticky || undefined} hidden={isSticky || undefined}>
+  <div class="nav-inner">
+    <div class="logo">Trimbook<sup>®</sup></div>
+
+    <ul class="nav-links">
+      <li><a href="#inicio" class="active" aria-current="page">Inicio</a></li>
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <button type="button" class="btn-cta">Reserva gratis</button>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: relative;
+    z-index: 50;
+    width: 100%;
+  }
+
+  .nav--transparent {
+    background: transparent;
+  }
+
+  .nav--sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(6, 8, 20, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .nav--sticky.nav-sticky--visible {
+    animation: nav-slide-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .nav--sticky.nav-sticky--hidden {
+    animation: nav-slide-out 0.3s ease-in forwards;
+  }
+
+  @keyframes nav-slide-in {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes nav-slide-out {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    letter-spacing: -0.04em;
+    color: #fff;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .logo sup {
+    font-size: 0.55em;
+    vertical-align: super;
+    letter-spacing: 0;
+  }
+
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.2s ease;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #fff;
+  }
+
+  .btn-cta {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #000;
+    background: var(--muted);
+    border: none;
+    border-radius: 9999px;
+    padding: 10px 24px;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .btn-cta:hover {
+    transform: scale(1.03);
+    opacity: 0.88;
+  }
+
+  .btn-cta:focus-visible {
+    outline: 2px solid var(--muted);
+    outline-offset: 3px;
+  }
+</style>
