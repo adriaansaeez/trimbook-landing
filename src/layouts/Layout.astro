@@ -7,7 +7,11 @@ interface Props {
 const {
   title = 'Trimbook — Reservas para barberías',
   description = 'Software de reservas diseñado para barberías modernas. Gestiona citas, fideliza clientes y haz crecer tu negocio.',
+  canonical,
 } = Astro.props;
+
+const siteUrl = 'https://trimbook.com';
+const canonicalUrl = canonical || `${siteUrl}${Astro.url.pathname}`;
 ---
 
 <!doctype html>
@@ -27,6 +31,29 @@ const {
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Trimbook" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Trimbook",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": description,
+      "url": "https://trimbook.com",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR",
+      },
+    })} />
   </head>
   <body>
     <slot />

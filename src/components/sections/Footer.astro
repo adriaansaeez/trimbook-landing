@@ -1,6 +1,18 @@
 ---
-const productoLinks = ['Funcionalidades', 'Precios', 'Integraciones', 'Agente IA', 'Changelog'];
-const empresaLinks = ['Sobre nosotros', 'Blog', 'Contacto', 'Únete al equipo', 'Afiliados'];
+const productoLinks = [
+  { label: 'Funcionalidades', href: '#funciones' },
+  { label: 'Precios', href: '#precios' },
+  { label: 'Integraciones', href: '#funciones' },
+  { label: 'Agente IA', href: '#funciones' },
+  { label: 'Changelog', href: '#' },
+];
+const empresaLinks = [
+  { label: 'Sobre nosotros', href: '#' },
+  { label: 'Blog', href: '#' },
+  { label: 'Contacto', href: '#contacto' },
+  { label: 'Únete al equipo', href: '#' },
+  { label: 'Afiliados', href: '#' },
+];
 const legalLinks = [
   { label: 'Aviso Legal', href: '/aviso-legal' },
   { label: 'Política de Privacidad', href: '/politica-de-privacidad' },
@@ -26,14 +38,14 @@ const legalLinks = [
     <div class="footer-col">
       <p class="footer-col-title">Producto</p>
       {productoLinks.map((link) => (
-        <a href="#" class="footer-link">{link}</a>
+        <a href={link.href} class="footer-link">{link.label}</a>
       ))}
     </div>
 
     <div class="footer-col">
       <p class="footer-col-title">Empresa</p>
       {empresaLinks.map((link) => (
-        <a href={link === 'Contacto' ? '#contacto' : '#'} class="footer-link">{link}</a>
+        <a href={link.href} class="footer-link">{link.label}</a>
       ))}
     </div>
 
