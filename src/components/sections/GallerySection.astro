@@ -1,14 +1,11 @@
 ---
-import BookingFormMockup from './gallery/BookingFormMockup.astro';
-import CalendarMockup from './gallery/CalendarMockup.astro';
-import StatsMockup from './gallery/StatsMockup.astro';
-import AIMockup from './gallery/AIMockup.astro';
+import ScreenshotMockup from './gallery/ScreenshotMockup.astro';
 
 const tabs = [
-  { label: 'Reservas', subtitle: 'Formulario de reserva', desc: 'Tus clientes reservan en segundos desde cualquier dispositivo.' },
-  { label: 'Calendario', subtitle: 'Calendario dinámico', desc: 'Vista completa de tu agenda en tiempo real. Arrastra, edita y gestiona.' },
-  { label: 'Estadísticas', subtitle: 'Panel de métricas', desc: 'Ingresos, clientes y tendencias. Todo lo que necesitas para crecer.' },
-  { label: 'Agente IA', subtitle: 'Reservas por WhatsApp', desc: 'Tu asistente IA recibe y confirma citas 24/7 sin que muevas un dedo.' },
+  { label: 'Reservas', subtitle: 'Formulario de reserva', desc: 'Tus clientes reservan en segundos desde cualquier dispositivo.', img: '/images/trimbook/trimbook-cliente-formulario-reserva.png', alt: 'Formulario de reserva para clientes', url: 'trimbook.app/reservar' },
+  { label: 'Calendario', subtitle: 'Calendario dinámico', desc: 'Vista completa de tu agenda en tiempo real. Arrastra, edita y gestiona.', img: '/images/trimbook/trimbook-admin-calendario.png', alt: 'Calendario de administración', url: 'trimbook.app/agenda' },
+  { label: 'Estadísticas', subtitle: 'Panel de métricas', desc: 'Ingresos, clientes y tendencias. Todo lo que necesitas para crecer.', img: '/images/trimbook/trimbook-admin-dashboard.png', alt: 'Dashboard de estadísticas', url: 'trimbook.app/dashboard' },
+  { label: 'Agente IA', subtitle: 'Reservas por WhatsApp', desc: 'Tu asistente IA recibe y confirma citas 24/7 sin que muevas un dedo.', img: '/images/trimbook/trimbook-reservas-cliente.png', alt: 'Reservas de cliente vía WhatsApp', url: 'wa.trimbook.app' },
 ];
 ---
 
@@ -36,18 +33,16 @@ const tabs = [
     </div>
 
     <div class="gallery-preview">
-      <div class="gallery-mockup gallery-mockup--in" data-gallery-panel="0" role="tabpanel">
-        <BookingFormMockup />
-      </div>
-      <div class="gallery-mockup" data-gallery-panel="1" role="tabpanel" hidden>
-        <CalendarMockup />
-      </div>
-      <div class="gallery-mockup" data-gallery-panel="2" role="tabpanel" hidden>
-        <StatsMockup />
-      </div>
-      <div class="gallery-mockup" data-gallery-panel="3" role="tabpanel" hidden>
-        <AIMockup />
-      </div>
+      {tabs.map((t, i) => (
+        <div
+          class={`gallery-mockup${i === 0 ? ' gallery-mockup--in' : ''}`}
+          data-gallery-panel={i}
+          role="tabpanel"
+          {...(i !== 0 ? { hidden: true } : {})}
+        >
+          <ScreenshotMockup src={t.img} alt={t.alt} url={t.url} />
+        </div>
+      ))}
       <div class="gallery-desc-bar">
         <span class="gallery-desc-label" data-gallery-desc-label>{tabs[0].subtitle}</span>
         <span class="gallery-desc-text" data-gallery-desc-text>{tabs[0].desc}</span>

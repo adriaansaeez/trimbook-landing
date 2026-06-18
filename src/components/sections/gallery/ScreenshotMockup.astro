@@ -1,0 +1,44 @@
+---
+interface Props {
+  src: string;
+  url?: string;
+  alt: string;
+}
+
+const { src, url, alt } = Astro.props;
+---
+
+<div class="mock-wrap">
+  <div class="mock-header">
+    <div class="mock-dots">
+      <span style="background:#ff5f57"></span>
+      <span style="background:#febc2e"></span>
+      <span style="background:#28c840"></span>
+    </div>
+    {url && <span class="mock-url">{url}</span>}
+  </div>
+  <div class="mock-body mock-body--img">
+    <img src={src} alt={alt} loading="lazy" class="mock-screenshot" />
+  </div>
+</div>
+
+<style>
+  .mock-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .mock-body--img {
+    background: #0a0b12;
+    padding: 0;
+    line-height: 0;
+  }
+
+  @media (max-width: 480px) {
+    .mock-screenshot {
+      transform: scale(1.08);
+      transform-origin: top left;
+    }
+  }
+</style>
