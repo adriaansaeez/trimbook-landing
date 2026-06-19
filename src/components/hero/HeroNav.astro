@@ -20,7 +20,7 @@ const navClass = isSticky ? 'nav nav--sticky' : 'nav nav--transparent';
       <li><a href="#contacto">Contacto</a></li>
     </ul>
 
-    <button type="button" class="btn-cta">Reserva gratis</button>
+    <a href="#contacto" class="btn-cta">Reserva gratis</a>
   </div>
 </nav>
 
@@ -143,6 +143,10 @@ const navClass = isSticky ? 'nav nav--sticky' : 'nav nav--transparent';
     letter-spacing: 0.01em;
     transition: transform 0.2s ease, opacity 0.2s ease;
     flex-shrink: 0;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-cta:hover {

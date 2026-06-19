@@ -125,6 +125,7 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .trimbi-cta:hover { transform: scale(1.03); opacity: 0.9; }

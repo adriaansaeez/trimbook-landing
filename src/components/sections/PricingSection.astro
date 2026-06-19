@@ -57,7 +57,7 @@ const barbershopFeatures = [
         <div class="pricing-tier-feature" set:html={`${checkIcon}<span>Panel de estadísticas e ingresos</span>`}></div>
         <div class="pricing-tier-feature pricing-tier-feature-muted" set:html={`${xIcon}<span>Gestión multi-barbero</span>`}></div>
       </div>
-      <button type="button" class="pricing-tier-cta" disabled aria-disabled="true" set:html={`Empieza con Barber ${arrowIcon}`}></button>
+      <a href="#contacto" class="pricing-tier-cta" set:html={`Empieza con Barber ${arrowIcon}`}></a>
     </div>
 
     <!-- Founder (centro) -->
@@ -89,7 +89,7 @@ const barbershopFeatures = [
           <div class="pricing-tier-feature" set:html={`${checkIcon}<span>${feature}</span>`}></div>
         ))}
       </div>
-      <button type="button" class="pricing-tier-cta" set:html={`Reservar plaza Founder ${arrowIcon}`}></button>
+      <a href="#contacto" class="pricing-tier-cta" set:html={`Reservar plaza Founder ${arrowIcon}`}></a>
     </div>
 
     <!-- Barbershop -->
@@ -120,7 +120,7 @@ const barbershopFeatures = [
           <div class="pricing-tier-feature" set:html={`${checkIcon}<span>${feature}</span>`}></div>
         ))}
       </div>
-      <button type="button" class="pricing-tier-cta" disabled aria-disabled="true" set:html={`Empieza con Barbershop ${arrowIcon}`}></button>
+      <a href="#contacto" class="pricing-tier-cta" set:html={`Empieza con Barbershop ${arrowIcon}`}></a>
     </div>
   </div>
 
